@@ -32,7 +32,7 @@ initializeDb( db => {
 	app.use(middleware({ config, db }));
 
     // hello
-    app.get('/helloworld', (req, res) => {
+    app.get('/hello', (req, res) => {
         res.json({ description });
     });
 

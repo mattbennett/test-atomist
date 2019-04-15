@@ -1,3 +1,4 @@
+import { description } from '../package.json';
 import http from 'http';
 import express from 'express';
 import cors from 'cors';
@@ -7,6 +8,7 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
+
 
 let app = express();
 app.server = http.createServer(app);
@@ -28,6 +30,11 @@ initializeDb( db => {
 
 	// internal middleware
 	app.use(middleware({ config, db }));
+
+    // hello
+    app.get('/hello', (req, res) => {
+        res.json({ description });
+    });
 
 	// api router
 	app.use('/api', api({ config, db }));

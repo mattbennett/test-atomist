@@ -1,0 +1,51 @@
+{
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "livenessProbe": {
+              "httpGet": {
+                "path": "/api",
+                "port": "http",
+                "scheme": "HTTP"
+              }
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/api",
+                "port": "http",
+                "scheme": "HTTP"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "privileged": false,
+              "readOnlyRootFilesystem": true
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/www/dist",
+                "name": "build"
+              }
+            ]
+          }
+        ],
+        "securityContext": {
+          "fsGroup": 1001,
+          "runAsGroup": 1001,
+          "runAsNonRoot": true,
+          "runAsUser": 1001,
+          "supplementalGroups": [],
+          "sysctls": []
+        },
+        "volumes": [
+          {
+            "emptyDir": {},
+            "name": "build"
+          }
+        ]
+      }
+    }
+  }
+}
